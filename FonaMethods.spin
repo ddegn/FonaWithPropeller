@@ -55,8 +55,10 @@ CON
 
   SCALED_MULTIPLIER = 1000
 
+  CHECK_OK_TIME = MS_001 * 200
+  
   QUOTE = 34
-  NUMBER_OF_SD_INSTANCES = Header#NUMBER_OF_SD_INSTANCES
+  NUMBER_OF_SD_INSTANCES = 2 'Header#NUMBER_OF_SD_INSTANCES
   
 OBJ
 
@@ -65,7 +67,7 @@ OBJ
   Serial : "Parallax Serial Terminal"
   Format : "StrFmt"
   Sd[2]: "SdSmall" 
-  Spi : "StepperSpi" 
+  Spi : "OledSpi" 
   Num : "Numbers"
    
 VAR
@@ -74,15 +76,15 @@ VAR
   'long lastRefreshTime, refreshInterval
   long oledStack[Header#MONITOR_OLED_STACK_SIZE]
   long sdErrorNumber, sdErrorString, sdTryCount
-  long filePosition[Header#NUMBER_OF_AXES]
+  long filePosition[NUMBER_OF_SD_INSTANCES]
   long globalMultiplier, globalDecPoints
   long oledLabelPtr, oledDataPtrPtr, oledDataQuantity ' keep together and in order
-  long shiftRegisterOutput, shiftRegisterInput
-  long adcData[8]
+  'long shiftRegisterOutput, shiftRegisterInput
+  'long adcData[8]
   long debugSpi[16], extraDebug[16]
   long configPtr
   
-  byte sdMountFlag[Header#NUMBER_OF_SD_INSTANCES]
+  byte sdMountFlag[NUMBER_OF_SD_INSTANCES]
   byte endFlag
   'byte configData[Header#CONFIG_SIZE]
   byte sdFlag
@@ -100,8 +102,8 @@ invertPoints            long 0[4]
 configNamePtr           long 0
 fontFileName            long 0-0
 
-machineState            byte Header#INIT_STATE
-units                   byte Header#MILLIMETER_UNIT 
+'machineState            byte Header#INIT_STATE
+'units                   byte Header#MILLIMETER_UNIT 
 delimiter               byte 13, 10, ",", 9, 0
 targetOledState         byte Header#DEMO_OLED
 oledState               byte Header#DEMO_OLED
@@ -145,33 +147,42 @@ rowOfBytes              byte 0[128]
 PUB Start
 
   sdFlag := Header#INITIALIZING_SD
-
+  {
   Sd.fatEngineStart(Header#DOPIN, Header#ClkPIN, Header#DIPIN, Header#CSPIN, {
   } Header#WP_SD_PIN, Header#CD_SD_PIN, Header#RTC_PIN_1, Header#RTC_PIN_2, {
   } Header#RTC_PIN_3) 
-  
+  }
   SetLocks
   SetFont(activeFont)
   
-  Pst.str(string(11, 13, "SD Card Driver Started"))
+  'Pst.str(string(11, 13, "SD Card Driver Started"))
+  Pst.str(string(11, 13, "SD Card Driver Is Not Currently Active"))
  
-  MountSd(Header#OLED_DATA_SD)
+  'MountSd(Header#OLED_DATA_SD)
 
   longfill(@oledStack, Header#STACK_CHECK_LONG, Header#MONITOR_OLED_STACK_SIZE)
   
-  result := cognew(OledMonitor, @oledStack)
+  {result := cognew(OledMonitor, @oledStack)
   Pst.str(string(11, 13, "OledMonitor started on cog # "))
   Pst.Dec(result)   
-  Pst.Char(".")
+  Pst.Char(".")   }
 
+  Pst.str(string(11, 13, "Oled is not presently active."))
+  
   InitFona
   
   result := @oledStack
   
 PRI InitFona
 
-  Serial.StartRxTx(Header#TX_FROM_FONA, Header#RX_TO_FONA, 0, Header#FONA_BAUD)
+  Serial.StartRxTx(Header#TX_FROM_FONA, Header#RX_TO_FONA, %1000, Header#FONA_BAUD)
 
+  waitcnt(clkfreq / 2 + cnt)
+  
+  'BothStr(@ringWithSmsText)
+  'BothStr(@ringWithSmsText)
+  'BothStr(@ringWithSmsText)
+ 
   
   'Header#NETWORK_STATUS = 21
   'Header#RX_TO_FONA = 22
@@ -229,12 +240,190 @@ PUB SetPower(state) | attempts
       waitcnt(clkfreq * 2 + cnt)
       dira[Header#KEY] := 0
       attempts++
+      waitcnt(clkfreq / 2 + cnt)
       result := CheckOnState
       if result <> state
         Pst.str(string(11, 13, "Failed Power Toggle"))
         waitcnt(clkfreq * 2 + cnt)
     while attempts < 2    
     
+PUB Dial(namePtr, numberPtr)
+
+  Pst.str(string(11, 13, "Calling ")) 
+  if namePtr
+    Pst.Char(QUOTE)   
+    Pst.str(namePtr)
+    Pst.Char(".")
+    Pst.Char(QUOTE)
+  else
+    Pst.str(string("unknown name."))  
+
+  Pst.str(string(11, 13, "At number ", QUOTE)) 
+  Pst.str(numberPtr)
+  Pst.Char(QUOTE)
+
+  BothStr(@dialNumberText)
+  BothStr(numberPtr)
+  BothChar(";")
+  BothChar(13)
+  
+  result := CheckOk
+  if result == -1
+    Pst.str(string(11, 13, "Timeout Error"))
+    Pst.str(string(11, 13, "The Fona was not dialed."))
+    return
+
+  BothStr(@textModeText)
+  result := CheckOk
+  if result == -1
+    Pst.str(string(11, 13, "Timeout Error"))
+    Pst.str(string(11, 13, "The Fona was not dialed."))
+    return
+  
+  Pst.Newline
+  Pst.str(namePtr)  
+ 
+
+PUB SendText(namePtr, numberPtr, textPtr)
+
+  Pst.str(string(11, 13, "Sending text to ")) 
+  if namePtr
+    Pst.Char(QUOTE)   
+    Pst.str(namePtr)
+    Pst.Char(".")
+    Pst.Char(QUOTE)
+  else
+    Pst.str(string("an unknown name."))  
+
+  Pst.str(string(11, 13, "At number ", QUOTE)) 
+  Pst.str(numberPtr)
+  Pst.Char(QUOTE)
+
+  BothStr(@textModeText)
+  result := CheckOk
+  if result == -1
+    Pst.str(string(11, 13, "Timeout Error"))
+    Pst.str(string(11, 13, "The Fona was not dialed."))
+    result -= 10
+    return
+
+  BothStr(@textNumberText)
+  BothStr(numberPtr)
+  BothChar(QUOTE)
+  BothChar(13)
+  
+  result := CheckCharacterIn(">")
+  
+  if result < 0
+    Pst.str(string(11, 13, "Error"))
+    Pst.str(string(11, 13, "Text Aborted"))
+    Serial.Char(13)
+    Serial.Char(endOfFile)
+    result -= 20
+    return 
+
+  BothStr(textPtr)
+  Serial.Char(13)
+  Serial.Char(endOfFile)
+
+PUB CheckOk | startTime, timer, newChar, charIndex
+'' Returns 1 if "OK" is received.
+'' Returns -1 if a timeout occurs.
+'' This method doesn't check the order of the characters
+'' received; it just checks to make sure all the characters
+'' are recieved.
+
+  startTime := cnt
+  charIndex := 0
+  repeat
+    newChar := Serial.CharIn
+    case newChar
+      "O", "K", 13:
+         if ++charIndex
+           result := 1
+           Pst.RxFlush
+           
+    timer := cnt - startTime
+    if timer > CHECK_OK_TIME
+      result := -1
+  until result
+
+  if result == -1
+    Pst.str(string(11, 13, "Timeout error while waiting for ", QUOTE))
+    Pst.str(string("OK.", QUOTE))
+    
+PUB CheckCharacterIn(localCharacter) | startTime, timer, newChar, charIndex 
+'' Returns 1 if character is received.
+'' Returns -1 if an error occurs.
+
+  startTime := cnt
+  charIndex := 0
+  repeat
+    newChar := Serial.CharIn
+    if newChar == localCharacter
+      result := 1
+      Pst.RxFlush
+    elseif newChar => 32 and newChar =< "~"
+      
+      result := -2 
+    timer := cnt - startTime
+    if timer > CHECK_OK_TIME
+      result := -1
+  until result
+
+  case result == -1
+    -1:
+      Pst.str(string(11, 13, "Timeout error while waiting for ", QUOTE))
+      Pst.str(string("OK.", QUOTE))
+    -2:
+      Pst.str(string(11, 13, "The wrong character received. The received character was ", QUOTE))
+      Pst.Char(newChar)
+      Pst.str(string(".", QUOTE))
+      
+PUB TerminalBridge | localCharacter
+
+  Pst.str(string(11, 13, "TerminalBridge Method")) 
+  Pst.str(string(11, 13, "Whatever is typed in the terminal will be passed to the Fona.")) 
+  Pst.str(string(11, 13, "Turning back on the echo from Fona.")) 
+  Pst.str(string(11, 13, "Press the ", QUOTE, "~", QUOTE, " key to send a control-Z character.")) 
+  Pst.str(string(11, 13, "Press the ", QUOTE, "|", QUOTE, " key to exit this method."))
+  Serial.StartRxTx(Header#TX_FROM_FONA, Header#RX_TO_FONA, 0, Header#FONA_BAUD)
+
+  Pst.str(string(11, 13, "Sending AT."))
+  repeat 2
+    Serial.Str(string("AT", 13))
+    waitcnt(clkfreq / 10 + cnt)
+     
+    repeat
+      result := Pst.RxCount
+      if result
+        result := Serial.CharIn
+        SafeTx(result)
+    while result
+  PressToContinue
+  repeat
+    result := Pst.RxCount
+    if result
+      localCharacter := Pst.CharIn
+      if localCharacter == "|"
+        quit
+      elseif localCharacter == "~"
+        Serial.Char(endOfFile)  
+      else
+        Serial.Char(localCharacter)
+    result := Serial.RxCount
+    if result
+      localCharacter := Serial.CharIn    
+      if localCharacter == endOfFile
+        Pst.Char("^")
+        Pst.Char("Z")
+      else
+        'Pst.Char(localCharacter)
+        SafeTx(localCharacter)
+          
+  Pst.str(string(11, 13, "Turning off the echo from Fona.")) 
+  Serial.StartRxTx(Header#TX_FROM_FONA, Header#RX_TO_FONA, %1000, Header#FONA_BAUD)
+  
 PRI SetLocks
 
   debugLock := locknew
@@ -549,7 +738,7 @@ PUB SetOled(state, labelPtr, dataPtrPtr, dataQuantity)
           }
 PRI OledMonitor ': frozenState
   
-  Spi.Start(Spi#SSD1306_SWITCHCAPVCC, Spi#TYPE_128X64, @shiftRegisterOutput, @debugSpi)
+  Spi.Start(Spi#SSD1306_SWITCHCAPVCC, Spi#TYPE_128X64, @debugSpi)
   
   repeat
     oledState := targetOledState
@@ -2183,7 +2372,7 @@ PUB PauseForInput
   Pst.Str(string(11, 13, "Press any key to continue."))
   result := Pst.CharIn
 
-PUB SafeTx(localCharacter)
+{PUB SafeTx(localCharacter)
 '' Debug lock should be set prior to calling this method.
 
   if (localCharacter > 32 and localCharacter < 127)
@@ -2193,7 +2382,7 @@ PUB SafeTx(localCharacter)
     Pst.Char(36) 
     Pst.Hex(localCharacter, 2)
     Pst.Char(62)
-
+               }
 PUB ReadableBin(localValue, size) | bufferPtr, localBuffer[12]    
 '' This method display binary numbers
 '' in easier to read groups of four
@@ -2269,12 +2458,12 @@ PUB PressToContinueOrClose(closeCharacter)
       Pst.str(string("] = "))
       Pst.Dec(filePosition[result])
       UnmountSd(result)
-    UnmountSd(Header#DESIGN_AXIS)
+    UnmountSd(0)  '***
     PressToContinue
   else
     result := 0
 
-PUB GetUnitsName(unitIndex)
+{PUB GetUnitsName(unitIndex)
 
   result := Header.FindString(@unitsText, unitIndex)
                         
@@ -2313,12 +2502,12 @@ PUB Get165Address
 PUB GetAxisText
 
   result := @axesText
-  
+ } 
 PUB GetOledBuffer
 
   result := Spi.GetBuffer
   
-PUB SetSleepDrv8711(sleepAxis, state)
+{PUB SetSleepDrv8711(sleepAxis, state)
 
   sleepAxis *= Header#CHANNELS_PER_CS
   sleepAxis += Header#SLEEP_DRV8711_X_595
@@ -2465,11 +2654,50 @@ PUB SetupDvr8711(axis, drive, microCode, decayMode, gateSpeed, gateDrive, deadti
   WriteDrv8711(axis, Header#STATUS_REG, 0)  ' clear all status bits
 
   WriteDrv8711(axis, Header#CTRL_REG, controlReg | Header#DRV8711CTL_ENABLE)
+ }
+PRI BothStr(localStr)
 
+  Pst.Str(localStr)
+  Serial.Str(localStr)
+  
+PRI BothChar(localCharacter)
 
+  Pst.Char(localCharacter)
+  Serial.Char(localCharacter)
+  
+PRI BothDec(value)
+
+  Pst.Dec(value)
+  Serial.Dec(value)
+  
+PRI SafeTx(localCharacter)
+
+  if localCharacter => 32 and localCharacter =< "~"
+    Pst.Char(localCharacter)
+  elseif localCharacter == 0
+    return
+  elseif localCharacter == 13 ' pass along and show carriage returns
+    Pst.Char("<") 
+    Pst.Char("$")
+    Pst.Hex(localCharacter, 2)
+    Pst.Char(">")
+    Pst.Char(localCharacter)
+  else
+    Pst.Char("<") 
+    Pst.Char("$")
+    Pst.Hex(localCharacter, 2)
+    Pst.Char(">")
+     
 DAT
 
-unitsText               byte "steps", 0
+textModeText            byte "AT+CMGF=1", 13, 0
+textNumberText          byte "AT+CMGS=", QUOTE, 0
+dialNumberText          byte "ATD", 0
+ringWithSmsText         byte "AT+CFRGRI=1", 13, 0
+
+endOfFile               byte $1A ' control z
+
+{unitsText               byte "steps", 0
                         byte "turns", 0
                         byte "inches", 0
                         byte "millimeters", 0
@@ -2487,7 +2715,7 @@ machineStateTxt         byte "INIT_STATE", 0
                         byte "RUN_PROGRAM_STATE", 0
                         byte "MANUAL_KEYPAD_STATE", 0
                         byte "MANUAL_NUNCHUCK_STATE", 0
-
+ }
 DAT
 {
 lmrVB   ' vertical bytes 

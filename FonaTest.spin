@@ -34,6 +34,18 @@ CON
 
   ' subMode enumeration
   #0, WHICH_PHONE, TEXT_OR_VOICE, WHICH_TEXT
+
+  ' activePhone enumeration
+  #0, CHRISTINA_CELL, CHRISTINA_HOME, CHRISTINA_WORD
+
+  MAX_PHONE_INDEX = CHRISTINA_WORD
+  NUMBER_OF_PHONES = MAX_PHONE_INDEX + 1
+
+  ' phoneType enumeration
+  #0, LAND_LINE, CELL_LINE
+
+  TEXT_MESSAGES = 4
+  MAX_MESSAGE_INDEX = TEXT_MESSAGES - 1
   
   QUOTE = 34
 
@@ -94,7 +106,9 @@ decelOctant             long 0-0
 endOctant               long 0-0
 }
 activeMode              byte UXOURIOUS_TERMINAL_MODE
-subMode                 byte WHICH_PHONE   
+subMode                 byte WHICH_PHONE
+activePhone             byte CHRISTINA_CELL
+
 OBJ
 
   Header : "HeaderFona"
@@ -116,45 +130,30 @@ PUB Setup
 
   Fona.Start
 
-  Fona.SetPower(state)
-  waitcnt(clkfreq * 2 + cnt) 
+  Fona.SetPower(1)
+  waitcnt(clkfreq / 4 + cnt) 
   'Pst.Clear
 
   networkState := Fona.CheckNetwork
-          
-  Pst.str(string(11, 13, "Failed Power Toggle"))
-  InitSteppers(0, 1)
-  Pst.Clear
+
+  Pst.str(string(11, 13))
+  Pst.str(Header.FindString(@networkStateText, networkState)) 
+
+  Fona.PressToContinue
+  'waitcnt(clkfreq * 2 + cnt) 
   
-  timesToA := ComputeAccelIntervals(maxDelay, minDelay, defaultDeltaDelay, accelerationInterval)
-  
+  'Pst.Clear
+
   MainLoop
-
-PRI InitSteppers(firstAxis, lastAxis)
-
-  repeat result from firstAxis to lastAxis
-    Fona.ResetDrv8711(result)
-    Pst.Str(string(11, 13, "Reset axis #"))
-    Pst.Dec(result)   
-    Pst.Char(".")
-
-    Pst.Str(string(11, 13, "Reading registers prior to setup."))
-    Fona.ShowRegisters(result)
-    
-    Fona.SetupDvr8711(result, Header#DEFAULT_DRIVE_DRV8711, Header#DEFAULT_MICROSTEP_CODE_DRV8711, {
-    } Header#DEFAULT_DECAY_MODE_DRV8711, Header#DEFAULT_GATE_SPEED_DRV8711, {
-    } Header#DEFAULT_GATE_DRIVE_DRV8711, Header#DEFAULT_DEADTIME_DRV8711)
-    Pst.Str(string(11, 13, "Setup finished axis #"))
-    Pst.Dec(result)   
-    Pst.Char(".")
-    Fona.PressToContinue
-    Pst.Str(string(11, 13, "Reading registers."))
-    Fona.ShowRegisters(result)
 
 PUB MainLoop
 
   repeat
-    UxouriousTerminalLoop
+    'UxouriousTerminalLoop
+    Pst.str(string(11, 13))
+    Pst.str(Header.FindString(@networkStateText, networkState)) 
+    Fona.TerminalBridge
+    
     {
     Pst.Home
     Pst.Str(string(11, 13, "radius = "))
@@ -185,7 +184,7 @@ PUB MainLoop
 '  #0, UXOURIOUS_TERMINAL_MODE, TERMINAL_MODE, UXOURIOUS_PORTABLE_MODE, PORTABLE_MODE
       
 PUB CheckMenu(tempValue) 
-
+ {
   if tempValue
     tempValue := Pst.CharIn
   else
@@ -206,62 +205,73 @@ PUB CheckMenu(tempValue)
       ExecuteCircle
     other:
       Pst.Str(string(11, 13, "Not a valid entry.")) 
- 
+              }
 PUB TerminalInput
 
-  repeat
+{  repeat
 
   while fonaMode == TERMINAL_MODE
 
-
+ }
 
 PUB UxouriousTerminalLoop
-
+ {
   repeat
     UxouriousTerminalMenu
     result := Pst.RxCount
     if result
       UxouriousTerminalInput
   while fonaMode == UXOURIOUS_TERMINAL_MODE
-
+                 }
 PUB UxouriousTerminalMenu
 
-  case subMode
+  'case subMode
   Pst.Home
   Pst.Str(string(11, 13, "Uxourious Terminal Mode"))
+
+  'Pst.Str(string(11, 13, "The present active number is "))
+  'Pst.str(Header.FindString(@phoneNameText, activePhone)
+    
   Pst.str(string(11, 13, 11, 13, "Please select on of the following options."))
 
-  Pst.Str(string(11, 13, "Press ", QUOTE, "h", QUOTE, " to call or text wife at Home.")) 
-  Pst.Str(string(11, 13, "Press ", QUOTE, "c", QUOTE, " to call or text wife on Cell phone."))
-  Pst.Str(string(11, 13, "Press ", QUOTE, "y", QUOTE, " to call or text wife at Work."))
+  Pst.Str(string(11, 13, "Press ", QUOTE, "h", QUOTE, " to call wife at Home.")) 
+  Pst.Str(string(11, 13, "Press ", QUOTE, "c", QUOTE, " to call wife on Cell phone."))
+  Pst.Str(string(11, 13, "Press ", QUOTE, "w", QUOTE, " to call wife at Work."))
 
+  Pst.Str(string(11, 13, "To send a text message to her cell phone enter one of the numbers below."))
+  repeat result from 0 to MAX_MESSAGE_INDEX
+    Pst.Dec(result)
+    Pst.Str(string(") ", QUOTE))
+    Pst.str(Header.FindString(@textMessageText, result))
+    Pst.Str(string(") ", QUOTE))
+      
   Pst.Char(11)
   Pst.Char(13)
   Pst.ClearBelow
-    
-
-PUB UxouriousTerminalMenuTop
-
-  Pst.Home
-  Pst.Str(string(11, 13, "Uxourious Terminal Mode"))
-  Pst.str(string(11, 13, 11, 13, "Please select on of the following options."))
-
-  Pst.Str(string(11, 13, "Press ", QUOTE, "h", QUOTE, " to call or text wife at Home.")) 
-  Pst.Str(string(11, 13, "Press ", QUOTE, "c", QUOTE, " to call or text wife on Cell phone."))
-  Pst.Str(string(11, 13, "Press ", QUOTE, "y", QUOTE, " to call or text wife at Work."))
-
-  Pst.Char(11)
-  Pst.Char(13)
-  Pst.ClearBelow
-    
 
 PUB UxouriousTerminalInput
 
-  repeat
-    UxouriousTerminalMenu
-    
-  while fonaMode == UXOURIOUS_TERMINAL_MODE
-  'WHICH_PHONE, TEXT_OR_VOICE, WHICH_TEXT
+  result := Pst.CharIn
+  case result
+    "h", "H":
+      Fona.Dial(Header.FindString(@phoneNameText, CHRISTINA_HOME), {
+      } Header.FindString(@phoneNumberText, CHRISTINA_HOME))
+  
+PUB SendText(textId)
+
+  if phoneType[activePhone] <> CELL_LINE
+    Pst.Str(string(11, 13, "The present active number ", QUOTE))
+    Pst.str(Header.FindString(@phoneNameText, activePhone))
+    Pst.Str(string(QUOTE, " is not a cell phone."))
+    Pst.Str(string(11, 13, "Please select of cell phone to test."))
+    return 
+
+  Pst.Str(string(11, 13, "Please select which text message you'd like to send."))
+  repeat result from 0 to MAX_MESSAGE_INDEX
+    Pst.Dec(result)
+    Pst.Str(string(") ", QUOTE))
+    Pst.str(Header.FindString(@textMessageText, result))
+      
 {PUB FillOctantSize(radiusOverRoot2)
   '' Which eight of the circle does the move start? (Piece of Eight)
   '' 4) Cx>0, Cy<0        \4|3/  3) Cx<0, Cy<0
@@ -1339,3 +1349,28 @@ axisText                byte "X", 0, "Y", 0
 speedText               byte "fast", 0, "slow", 0
 phaseText               byte "accleration", 0, "full speed", 0, "deceleration", 0
 directionText           byte "forward", 0, "reverse", 0
+
+networkStateText        byte "The Fona is off, it's not possible to detect network.", 0
+                        byte "The Fona is not connected to a network.", 0
+                        byte "The network is ready for voice and text.", 0
+                        byte "The network is ready for GPRS data.", 0
+'  #0, FONA_OFF_NETWORK, NO_CONNECTION_NETWORK, READY_NETWORK, GPRS_DATA_ACTIVE_NETWORK
+  
+phoneNumberText         byte "2400000", 0
+                        byte "2390000", 0
+                        byte "6370000", 0
+                        
+phoneNameText           byte "Christina Cell", 0
+                        byte "Christina Home", 0
+                        byte "Christina Work", 0
+
+textMessageText         byte "Hi Chrisina, I love you.", 0
+                        byte "Christina you are a beautiful person.", 0
+                        byte "Christina would you like to go on a date with me tonight?", 0
+                        byte "Yes dear.", 0
+'' Make sure and change the constant "TEXT_MESSAGES" if messages are added or removed.                        
+
+phoneTypeText           byte "land line", 0
+                        byte "cell phone", 0
+
+phoneType               byte CELL_LINE, LAND_LINE, LAND_LINE
