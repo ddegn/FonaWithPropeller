@@ -48,8 +48,8 @@ CON
 
 OBJ
 
-  Pst : "Parallax Serial Terminal"
-  Serial[NUMBER_OF_SERIAL_TO_MONITOR] : "Parallax Serial Terminal"
+  Pst : "Parallax Serial Terminal256"
+  Serial[NUMBER_OF_SERIAL_TO_MONITOR] : "Parallax Serial Terminal256"
   
 PUB Start
 
