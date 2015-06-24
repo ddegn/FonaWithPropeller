@@ -1,0 +1,933 @@
+ToTerm>FONA basic test<$0D><$0A>Initializing....(May take 3 seconds)
+<$0D><$0A>
+Ard><$FF>AT<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>ATE0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>ATE0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FONA is OK<$0D><$0A>
+Ard>AT+GSN<$0D><$0A>
+FONA><$0D><$0A>860719000000000
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>SIM card IMEI: 860719000000000<$0D><$0A>-------------------------------------
+<$0D><$0A>[?] Print this menu
+<$0D><$0A>[a] read the ADC (2.8V max)
+<$0D><$0A>[b] read the Battery V and % charged
+<$0D><$0A>[C] read the SIM CCID
+<$0D><$0A>[U] Unlock SIM with PIN code
+<$0D><$0A>[i] read RSSI
+<$0D><$0A>[n] get Network status
+<$0D><$0A>[v] set audio Volume
+<$0D><$0A>[V] get Volume
+<$0D><$0A>[H] set Headphone audio
+<$0D><$0A>[e] set #
+<$0D><$0A>[R] Read All SMS
+<$0D><$0A>[d] Delete SMS #
+<$0D><$0A>[s] Send SMS
+<$0D><$0A>[y] Enable network time sync
+<$0D><$0A>[Y] Enable NTP time sync (GPRS)
+<$0D><$0A>[t] Get network time
+<$0D><$0A>[G] Enable GPRS
+<$0D><$0A>[g] Disable GPRS
+<$0D><$0A>[l] Query GSMLOC (GPRS)
+<$0D><$0A>[w] Read webpage (GPRS)
+<$0D><$0A>[W] Post to website (GPRS)
+<$0D><$0A>[O] Turn GPS on (SIM808)
+<$0D><$0A>[o] Turn GPS off (SIM808)
+<$0D><$0A>[x] GPS fix status (SIM808)
+<$0D><$0A>[L] Query GPS location (SIM808)
+<$0D><$0A>[E] Raw NMEA out (SIM808)
+<$0D><$0A>[S] create Serial passthru tunnel
+<$0D><$0A>-------------------------------------
+<$0D><$0A>
+<$0D><$0A>FONA> FONA basic test<$0D><$0A>Initializing....(May take 3 seconds)
+<$0D><$0A>
+Ard><$FF>AT<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>ATE0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>ATE0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FONA is OK<$0D><$0A>
+Ard>AT+GSN<$0D><$0A>
+FONA><$0D><$0A>860719000000000
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>SIM card IMEI: 860719000000000<$0D><$0A>-------------------------------------
+<$0D><$0A>[?] Print this menu
+<$0D><$0A>[a] read the ADC (2.8V max)
+<$0D><$0A>[b] read the Battery V and % charged
+<$0D><$0A>[C] read the SIM CCID
+<$0D><$0A>[U] Unlock SIM with PIN code
+<$0D><$0A>[i] read RSSI
+<$0D><$0A>[n] get Network status
+<$0D><$0A>[v] set audio Volume
+<$0D><$0A>[V] get Volume
+<$0D><$0A>[H] set Headphone audio
+<$0D><$0A>[e] set #
+<$0D><$0A>[R] Read All SMS
+<$0D><$0A>[d] Delete SMS #
+<$0D><$0A>[s] Send SMS
+<$0D><$0A>[y] Enable network time sync
+<$0D><$0A>[Y] Enable NTP time sync (GPRS)
+<$0D><$0A>[t] Get network time
+<$0D><$0A>[G] Enable GPRS
+<$0D><$0A>[g] Disable GPRS
+<$0D><$0A>[l] Query GSMLOC (GPRS)
+<$0D><$0A>[w] Read webpage (GPRS)
+<$0D><$0A>[W] Post to website (GPRS)
+<$0D><$0A>[O] Turn GPS on (SIM808)
+<$0D><$0A>[o] Turn GPS off (SIM808)
+<$0D><$0A>[x] GPS fix status (SIM808)
+<$0D><$0A>[L] Query GPS location (SIM808)
+<$0D><$0A>[E] Raw NMEA out (SIM808)
+<$0D><$0A>[S] create Serial passthru tunnel
+<$0D><$0A>-------------------------------------
+<$0D><$0A>
+<$0D><$0A>FONA>
+FromTerm>a<$0D><$0A>
+ToTerm>a<$0D><$0A>
+Ard>AT+CADC?<$0D><$0A>
+ToTerm>Failed to read ADC<$0D><$0A>FONA>
+<$0D><$0A>+C
+FONA><$0D><$0A>+CADC: 1,1709
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>ADC: 1,1709<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>b<$0D><$0A>
+FromTerm>b<$0D><$0A>
+Ard>AT+CBC<$0D><$0A>
+FONA><$0D><$0A>+CBC: 0,92,4137
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>VBat = 4137 mV<$0D><$0A>
+Ard>AT+CBC<$0D><$0A>
+FONA><$0D><$0A>+CBC: 0,92,4137
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>VPct = 92%<$0D><$0A>FONA>
+FromTerm>C<$0D><$0A>
+ToTerm>C<$0D><$0A>
+Ard>AT+CCID<$0D><$0A>
+FONA><$0D><$0A>8901260962149411040f
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>SIM CCID = 8901260962149411040f<$0D><$0A>FONA> i<$0D><$0A>
+FromTerm>i<$0D><$0A>
+Ard>AT+CSQ<$0D><$0A>
+FONA><$0D><$0A>+CSQ: 15,0
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>RSSI = 15: -84 dBm<$0D><$0A>FONA>
+FromTerm>n<$0D><$0A>
+ToTerm>n<$0D><$0A>
+Ard>AT+CREG?<$0D><$0A>
+FONA><$0D><$0A>+CREG: 0,1
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>Network status 1: Registered (home)<$0D><$0A>FONA>
+FromTerm>V<$0D><$0A>
+ToTerm>V<$0D><$0A>
+Ard>AT+CLVL?<$0D><$0A>
+FONA><$0D><$0A>+CLVL: 100
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>100%<$0D><$0A>FONA>
+FromTerm>v<$0D><$0A>
+ToTerm>v<$0D><$0A>Set Vol %
+FromTerm>50<$0D><$0A>
+ToTerm>50<$0D><$0A>
+Ard>AT+CLVL=50<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+FromTerm>V<$0D><$0A>
+ToTerm>V<$0D><$0A>
+Ard>AT+CLVL?<$0D><$0A>
+FONA><$0D><$0A>+CLVL: 50
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>50%<$0D><$0A>FONA>
+FromTerm>v<$0D><$0A>
+ToTerm>v<$0D><$0A>Set Vol %
+FromTerm>100<$0D><$0A>
+ToTerm>100<$0D><$0A>
+Ard>AT+CLVL=100<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+FromTerm>H<$0D><$0A>
+ToTerm>H<$0D><$0A>
+Ard>AT+CHFA=0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>
+Ard>AT+CMIC=0,15<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FONA> e<$0D><$0A>
+FromTerm>e<$0D><$0A>
+Ard>AT+CHFA=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>
+Ard>AT+CMIC=1,10<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FONA> T<$0D><$0A>Play tone #
+FromTerm>T<$0D><$0A>6<$0D><$0A>
+ToTerm>6<$0D><$0A>
+Ard>AT+STTONE=1,6,1000<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+FONA><$0D><$0A>+STTONE: 0
+<$0D><$0A>
+ToTerm><$0D><$0A>+STTONE: 0
+<$0D><$0A>
+FromTerm>M<$0D><$0A>
+ToTerm>M<$0D><$0A>
+Ard>AT+FMVOLUME?<$0D><$0A>
+FONA><$0D><$0A>+FMVOLUME: 0
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FM volume: 0<$0D><$0A>FONA>
+FromTerm>m<$0D><$0A>
+ToTerm>m<$0D><$0A>Set FM Vol [0-6]:
+FromTerm>4<$0D><$0A>
+ToTerm>4<$0D><$0A>
+Ard>AT+FMVOLUME=4<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+FromTerm>q<$0D><$0A>
+ToTerm>q<$0D><$0A>FM Freq (eg 1011 == 101.1 MHz):
+FromTerm>?<$0D><$0A>F<$0D><$0A>
+Ard><$FF>
+ToTerm>FONA basic test<$0D><$0A>Initializing....(May take 3 seconds)
+<$0D><$0A>
+Ard>AT<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>ATE0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>ATE0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FONA is OK<$0D><$0A>
+Ard>AT+GSN<$0D><$0A>
+FONA><$0D><$0A>860719000000000
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>S----<$0D><$0A>[?] Print this menu
+<$0D><$0A>[a] read the ADC (2.8V max)
+<$0D><$0A>[b] read the Battery V and % charged
+<$0D><$0A>[C] rea get Network status
+<$0D><$0A>[v] set audio Volume
+<$0D><$0A>[V] get Volume
+<$0D><$0A>[H] set Headphone audio
+<$0D><$0A>[e] set External audio
+<$0D> turn off FM
+<$0D><$0A>[m] set FM volume
+<$0D><$0A>[M] get FM volume
+<$0D><$0A>[q] get FM station signal level
+<$0D><$0A>[c] make phone Call
+<$0D>ead SMS #
+<$0D><$0A>[R] Read All SMS
+<$0D><$0A>[d] Delete SMS #
+<$0D><$0A>[s] Send SMS
+<$0D><$0A>[y] Enable network time sync
+<$0D><$0A>[Y] RS
+<$0D><$0A>[g] Disable GPRS
+<$0D><$0A>[l] Query GSMLOC (GPRS)
+<$0D><$0A>[w] Read webpage (GPRS)
+<$0D><$0A>[W] Post to website (GPRS)
+<$0D><$0A> status (SIM808)
+<$0D><$0A>[L] Query GPS location (SIM808)
+<$0D><$0A>[E] Raw NMEA out (SIM808)
+<$0D><$0A>[S] create Serial passthru tunnel
+<$0D><$0A>-------------------------------------
+<$0D><$0A>
+<$0D><$0A>FONA>
+FromTerm>b<$0D><$0A>
+ToTerm>b<$0D><$0A>
+Ard>AT+CBC<$0D><$0A>
+FONA><$0D><$0A>+CBC: 0,90,4126
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>VBat = 4126 mV<$0D><$0A>
+Ard>AT+CBC<$0D><$0A>
+FONA><$0D><$0A>+CBC: 0,90,4126
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>VPct = 90%<$0D><$0A>FONA>
+FromTerm>b<$0D><$0A>
+ToTerm>b<$0D><$0A>
+Ard>AT+CBC<$0D><$0A>
+FONA><$0D><$0A>+CBC: 0,90,4126
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>VBat = 4126 mV<$0D><$0A>
+Ard>AT+CBC<$0D><$0A>
+FONA><$0D><$0A>+CBC: 0,90,4126
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>VPct = 90%<$0D><$0A>FONA>
+FromTerm>e<$0D><$0A>
+ToTerm>e<$0D><$0A>
+Ard>AT+CHFA=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>
+Ard>AT+CMIC=1,10<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FONA>
+FromTerm>f<$0D><$0A>
+ToTerm>f<$0D><$0A>FM Freq (eg 1011 == 101.1 MHz):
+FromTerm>1025<$0D><$0A>
+ToTerm>1025<$0D><$0A>
+Ard>AT+FMOPEN=0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>Opened<$0D><$0A>
+Ard>AT+FMFREQ=1025<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>Tuned<$0D><$0A>FONA>
+FromTerm>M<$0D><$0A>
+ToTerm>M<$0D><$0A>
+Ard>AT+FMVOLUME?<$0D><$0A>
+FONA><$0D><$0A>+FMVOLUME: 4
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FM volume: 4<$0D><$0A>FONA>
+FromTerm>m<$0D><$0A>
+ToTerm>m<$0D><$0A>Set FM Vol [0-6]:6<$0D><$0A>
+FromTerm>6<$0D><$0A>
+Ard>AT+FMVOLUME=6<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+FromTerm>q<$0D><$0A>
+ToTerm>q<$0D><$0A>FM Freq (eg 1011 == 101.1 MHz): 1025<$0D><$0A>
+FromTerm>1025<$0D><$0A>
+Ard>AT+FMSIGNAL=1025<$0D><$0A>
+FONA><$0D><$0A>+FMSIGNAL: freq[1025]:67
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>Signal level (dB): 67<$0D><$0A>FONA> V<$0D><$0A>
+FromTerm>V<$0D><$0A>
+Ard>AT+CLVL?<$0D><$0A>
+FONA><$0D><$0A>+CLVL: 100
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>100%<$0D><$0A>FONA>
+FromTerm>e<$0D><$0A>
+ToTerm>e<$0D><$0A>
+Ard>AT+CHFA=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>
+Ard>AT+CMIC=1,10<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FONA>
+FromTerm>m<$0D><$0A>
+ToTerm>m<$0D><$0A>Set FM Vol [0-6]:
+FromTerm>3<$0D><$0A>
+ToTerm>3<$0D><$0A>
+Ard>AT+FMVOLUME=3<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+FromTerm>m<$0D><$0A>
+ToTerm>m<$0D><$0A>Set FM Vol [0-6]:
+FromTerm>1<$0D><$0A>
+ToTerm>1<$0D><$0A>
+Ard>AT+FMVOLUME=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+FromTerm>m<$0D><$0A>
+ToTerm>m<$0D><$0A>Set FM Vol [0-6]:
+FromTerm>0<$0D><$0A>
+ToTerm>0<$0D><$0A>
+Ard>AT+FMVOLUME=0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+FromTerm>m<$0D><$0A>
+ToTerm>m<$0D><$0A>Set FM Vol [0-6]:
+FromTerm>1<$0D><$0A>
+ToTerm>1<$0D><$0A>
+Ard>AT+FMVOLUME=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+FromTerm>m<$0D><$0A>
+ToTerm>m<$0D><$0A>Set FM Vol [0-6]:
+FromTerm>2<$0D><$0A>
+ToTerm>2<$0D><$0A>
+Ard>AT+FMVOLUME=2<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+FromTerm>m<$0D><$0A>
+ToTerm>m<$0D><$0A>Set FM Vol [0-6]:
+FromTerm>3<$0D><$0A>
+ToTerm>3<$0D><$0A>
+Ard>AT+FMVOLUME=3<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA> F<$0D><$0A>
+FromTerm>F<$0D><$0A>
+Ard>AT+FMCLOSE<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+FromTerm>?<$0D><$0A>
+ToTerm>?<$0D><$0A>-------------------------------------
+<$0D><$0A>[?] Print this menu
+<$0D><$0A>[a] read the ADC (2.8V max)
+<$0D><$0A>[b] read the Battery V and % charged
+<$0D><$0A>[C] read the SIM CCID
+<$0D><$0A>[U] Unlock SIM with PIN code
+<$0D><$0A>[i] read RSSI
+<$0D><$0A>[n] get Network status
+<$0D><$0A>[v] set audio Volume
+<$0D><$0A>[V] get Volume
+<$0D><$0A>[H] set Headphone audio
+<$0D><$0A>[e] set External au All SMS
+<$0D><$0A>[d] Delete SMS #
+<$0D><$0A>[s] Send SMS
+<$0D><$0A>[y] Enable network time sync
+<$0D><$0A>[Y] Enable NTP time sync (GPRS)
+<$0D><$0A>[t] Get network time
+<$0D><$0A>[G] Enable GPRS
+<$0D><$0A>[g] Disable GPRS
+<$0D><$0A>[l] Query GSMLOC (GPRS)
+<$0D><$0A>[w] Read webpage (GPRS)
+<$0D><$0A>[W] Post to website (GPRS)
+<$0D><$0A>[O] Turn GPS on (SIM808)
+<$0D><$0A>[o] Turn GPS off (SIM808)
+<$0D><$0A>[x] GPS fix status (SIM808)
+<$0D><$0A>[L] Query GPS location (SIM808)
+<$0D><$0A>[E] Raw NMEA out (SIM808)
+<$0D><$0A>[S] create Serial passthru tunnel
+<$0D><$0A>-------------------------------------
+<$0D><$0A>
+<$0D><$0A>FONA>
+FromTerm>s<$0D><$0A>
+ToTerm>s<$0D><$0A>Send to #
+FromTerm>2400000<$0D><$0A>
+ToTerm>2400000<$0D><$0A>Type out one-line message (140 char):
+FromTerm>Hi Christina, I love you on June 6 too.<$0D><$0A>
+ToTerm>Hi Christina, I love you on June 6 too.<$0D><$0A>
+Ard>AT+CMGF=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CMGS="2400000"<$0D><$0A>
+FONA><$0D><$0A>>
+Ard>Hi Christina, I love you on June 6 too.<$0D><$0A>
+<$0D><$0A><$1A>
+FONA><$0D><$0A>+CMGS: 2
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>Sent!<$0D><$0A>FONA>
+FromTerm>N<$0D><$0A>
+ToTerm>N<$0D><$0A>
+Ard>AT+CMGF=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CPMS?<$0D><$0A>
+FONA><$0D><$0A>+CPMS: "SM_P",2,30,"SM_P",2,30,"SM_P",2,30
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>2 SMS's on SIM card!<$0D><$0A>FONA>
+FromTerm>r<$0D><$0A>
+ToTerm>r<$0D><$0A>Read #
+FromTerm>1<$0D><$0A>
+ToTerm>1<$0A><$0D>Reading SMS #1
+<$0D><$0A>
+Ard>AT+CMGF=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CSDH=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CMGR=1<$0D><$0A>
+FONA><$0D><$0A>+CMGR: "REC READ","+12082400000","","15/06/05,22:17:38-24",145,0,0,0,"+12000000000",145,16
+<$0D><$0A>I love my Duane!
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FROM: +12082400000<$0D><$0A>
+Ard>AT+CMGF=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CSDH=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CMGR=1<$0D><$0A>
+FONA><$0D><$0A>+CMGR: "REC READ","+12082400000","","15/06/05,22:17:38-24",145,0,0,0,"+12000000000",145,16
+<$0D><$0A>I love my Duane!
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>***** SMS #1 (16) bytes *****<$0D><$0A>I love my Duane!
+<$0D><$0A>*****
+<$0D><$0A>FONA>
+FromTerm>r<$0D><$0A>
+ToTerm>r<$0D><$0A>Read #
+FromTerm>2<$0D><$0A>
+ToTerm>2<$0A><$0D>Reading SMS #2
+<$0D><$0A>
+Ard>AT+CMGF=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CSDH=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CMGR=2<$0D><$0A>
+FONA><$0D><$0A>+CMGR: "REC READ","+12082400000","","15/06/05,21:19:01-28",145,4,0,0,"+12000000000",145,30
+<$0D><$0A>I still love you in a 2nd text
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FROM: +12082400000<$0D><$0A>
+Ard>AT+CMGF=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CSDH=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CMGR=2<$0D><$0A>
+FONA><$0D><$0A>+CMGR: "REC READ","+12082400000","","15/06/05,21:19:01-28",145,4,0,0,"+12000000000",145,30
+<$0D><$0A>I still love you in a 2nd text
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>***** SMS #2 (30) bytes *****<$0D><$0A>I still love you in a 2nd text
+<$0D><$0A>*****
+<$0D><$0A>FONA> R<$0D><$0A>
+FromTerm>R<$0D><$0A>
+Ard>AT+CMGF=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CPMS?<$0D><$0A>
+FONA><$0D><$0A>+CPMS: "SM_P",2,30,"SM_P",2,30,"SM_P",2,30
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm><$0A><$0D>Reading SMS #1
+<$0D><$0A>
+Ard>AT+CMGF=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CSDH=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CMGR=1<$0D><$0A>
+FONA><$0D><$0A>+CMGR: "REC READ","+12082400000","","15/06/05,22:17:38-24",145,0,0,0,"+12000000000",145,16
+<$0D><$0A>I love my Duane!
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>***** SMS #1 (16) bytes *****<$0D><$0A>I love my Duane!
+<$0D><$0A>*****
+<$0D><$0A><$0A>
+<$0D>Reading SMS #2
+<$0D><$0A>
+Ard>AT+CMGF=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CSDH=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CMGR=2<$0D><$0A>
+FONA><$0D><$0A>+CMGR: "REC READ","+12082400000","","15/06/05,21:19:01-28",145,4,0,0,"+12000000000",145,30
+<$0D><$0A>I still love you in a 2nd text
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>***** SMS #2 (30) bytes *****<$0D><$0A>I still love you in a 2nd text
+<$0D><$0A>*****
+<$0D><$0A>FONA>
+FromTerm>t<$0D><$0A>
+ToTerm>t<$0D><$0A>
+Ard>AT+CCLK?<$0D><$0A>
+FONA><$0D><$0A>+CCLK: "04/01/01,01:28:20-24"
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>Time = "04/01/01,01:28:20-24"<$0D><$0A>FONA>
+FromTerm>Y<$0D><$0A>
+ToTerm>Y<$0D><$0A>
+Ard>AT+CNTPCID=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CNTP="pool.ntp.org",0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CNTP<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+FromTerm>t<$0D><$0A>
+ToTerm>Failed to enable<$0D><$0A>FONA> t<$0D><$0A>
+FromTerm>t<$0D><$0A>
+Ard>AT+CCLK?<$0D><$0A>
+FONA><$0D><$0A>+CCLK: "04/01/01,01:29:11-24"
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>Time = "04/01/01,01:29:11-24"<$0D><$0A>FONA>
+FromTerm>Y<$0D><$0A>
+ToTerm>Y<$0D><$0A>
+Ard>AT+CNTPCID=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CNTP="pool.ntp.org",0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CNTP<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>Failed to enable<$0D><$0A>FONA>
+FromTerm>y<$0D><$0A>
+ToTerm>y<$0D><$0A>
+Ard>AT+CLTS=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FONA>
+FromTerm>t<$0D><$0A>
+ToTerm>t<$0D><$0A>
+Ard>AT+CCLK?<$0D><$0A>
+FONA><$0D><$0A>+CCLK: "04/01/01,01:30:04-24"
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>Time = "04/01/01,01:30:04-24"<$0D><$0A>FONA>
+FromTerm>y<$0D><$0A>
+ToTerm>y<$0D><$0A>
+Ard>AT+CLTS=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FONA>
+FromTerm>t<$0D><$0A>
+ToTerm>t<$0D><$0A>
+Ard>AT+CCLK?<$0D><$0A>
+FONA><$0D><$0A>+CCLK: "04/01/01,01:30:18-24"
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>Time = "04/01/01,01:30:18-24"<$0D><$0A>FONA>
+FromTerm>d<$0D><$0A>
+ToTerm>d<$0D><$0A>Delete #
+FromTerm>1<$0D><$0A>
+ToTerm>1<$0A><$0D>Deleting SMS #1
+<$0D><$0A>
+Ard>AT+CMGF=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CMGD=001<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+FromTerm>R<$0D><$0A>
+ToTerm>R<$0D><$0A>
+Ard>AT+CMGF=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CPMS?<$0D><$0A>
+FONA><$0D><$0A>+CPMS: "SM_P",1,30,"SM_P",1,30,"SM_P",1,30
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm><$0A><$0D>Reading SMS #1
+<$0D><$0A>
+Ard>AT+CMGF=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CSDH=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CMGR=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>[empty slot]<$0D><$0A><$0A>
+<$0D>Reading SMS #2
+<$0D><$0A>
+Ard>AT+CMGF=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CSDH=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CMGR=2<$0D><$0A>
+FONA><$0D><$0A>+CMGR: "REC READ","+12082400000","","15/06/05,21:19:01-28",145,4,0,0,"+12000000000",145,30
+<$0D><$0A>I still love you in a 2nd text
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>***** SMS #2 (30) bytes *****<$0D><$0A>I still love you in a 2nd text
+<$0D><$0A>*****
+<$0D><$0A>FONA>
+****************************************************************************
+FromTerm>?<$0D><$0A>
+ToTerm>?<$0D><$0A>-------------------------------------
+<$0D><$0A>[?] Print this menu
+<$0D><$0A>[a] read the ADC (2.8V max)
+<$0D><$0A>[b] read the Battery V and % charged
+<$0D><$0A>[C] read the SIM CCID
+<$0D><$0A>[U] Unlock SIM with PIN code
+<$0D><$0A>[i] read RSSI
+<$0D><$0A>[n] get Network status
+<$0D><$0A>[v] set audio Volume
+<$0D><$0A>[V] get Volume
+<$0D><$0A>[H] set Headphone audio
+<$0D><$0A>[e] set External audio
+<$0D><$0A>[T] play audio Tone
+<$0D><$0A>[P] PWM/Buzzer out
+<$0D><$0A>[f] tune FM radio
+<$0D>e sync
+<$0D><$0A>[Y] Enable NTP time sync (GPRS)
+<$0D><$0A>[t] Get network time
+<$0D><$0A>[G] Enable GPRS
+<$0D><$0A>[g] Disable GPRS
+<$0D><$0A>[l] Query GSMLOC (GPRS)
+<$0D><$0A>[w] Read webpage (GPRS)
+<$0D><$0A>[W] Post to website (GPRS)
+<$0D><$0A>[O] Turn GPS on (SIM808)
+<$0D><$0A>[o] Turn GPS off (SIM808)
+<$0D><$0A>[x] GPS fix status (SIM808)
+<$0D><$0A>[L] Query GPS location (SIM808)
+<$0D><$0A>[E] Raw NMEA out (SIM808)
+<$0D><$0A>[S] create Serial passthru tunnel
+<$0D><$0A>-------------------------------------
+<$0D><$0A>
+<$0D><$0A>FONA>
+FromTerm>G<$0D><$0A>
+ToTerm>G<$0D><$0A>
+Ard>AT+CGATT=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+SAPBR=3,1,"CONTYPE","GPRS"<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+SAPBR=3,1,"APN","FONAnet"<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+SAPBR=1,1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FONA> r<$0D><$0A>Read #
+FromTerm>r<$0D><$0A>2<$0D><$0A>
+ToTerm>2<$0A><$0D>Reading SMS #2
+<$0D><$0A>
+Ard>AT+CMGF=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CSDH=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CMGR=2<$0D><$0A>
+FONA><$0D><$0A>+CMGR: "REC READ","+12082400000","","15/06/05,21:19:01-28",145,4,0,0,"+12000000000",145,30
+<$0D><$0A>I still love you in a 2nd text
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FROM: +12082400000<$0D><$0A>
+Ard>AT+CMGF=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CSDH=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CMGR=2<$0D><$0A>
+FONA><$0D><$0A>+CMGR: "REC READ","+12082400000","","15/06/05,21:19:01-28",145,4,0,0,"+12000000000",145,30
+<$0D><$0A>I still love you in a 2nd text
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>***** SMS #2 (30) bytes *****<$0D><$0A>I still love you in a 2nd text
+<$0D><$0A>*****
+<$0D><$0A>FONA>
+FromTerm>w<$0D><$0A>
+ToTerm>w<$0D><$0A>NOTE: in beta! Use small webpages to read!
+<$0D><$0A>URL to read (e.g. www.adafruit.com/testwifi/index.html):
+<$0D><$0A>http://
+FromTerm>www.adafruit.com/testwifi/index.html<$0D><$0A>
+ToTerm>www.adafruit.com/testwifi/index.html<$0D><$0A>****
+<$0D><$0A>
+Ard>AT+HTTPTERM<$0D><$0A>
+FONA><$0D><$0A>ERROR
+<$0D><$0A>
+Ard>AT+HTTPINIT<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+HTTPPARA="CID",1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+HTTPPARA="UA","FONA"<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+HTTPPARA="URL","www.adafruit.com/testwifi/index.html"<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+HTTPACTION=0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A><$0D><$0A>+HTTPACTION: 0,200,74
+<$0D><$0A>
+ToTerm>Status: 200<$0D><$0A>Len: 74
+<$0D><$0A>
+Ard>AT+HTTPREAD<$0D><$0A>
+FONA><$0D><$0A>+HTTPREAD: 74
+<$0D><$0A>This is a test of the CC3000 module!<$0A>If you can read this, its working :)<$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>This is a test of the CC3000 module!<$0A>If you can read this, its working :)<$0A><$0A>****<$0D><$0A>
+Ard>AT+HTTPTERM<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FONA> Y<$0D><$0A>
+FromTerm>Y<$0D><$0A>
+Ard>AT+CNTPCID=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CNTP="pool.ntp.org",0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CNTP<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A><$0D><$0A>+CNTP: 1
+<$0D><$0A>
+ToTerm>FONA>
+FromTerm>t<$0D><$0A>
+ToTerm>t<$0D><$0A>
+Ard>AT+CCLK?<$0D><$0A>
+FONA><$0D><$0A>+CCLK: "15/06/07,02:17:55-24"
+<$0D><$0A>
+<$0D><$0A>OK
+<$0D><$0A>
+ToTerm>Time = "15/06/07,02:17:55-24"<$0D><$0A>FONA>
+FromTerm>y<$0D><$0A>
+ToTerm>y<$0D><$0A>
+Ard>AT+CLTS=1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FONA>
+FromTerm>g<$0D><$0A>
+ToTerm>g<$0D><$0A>
+Ard>AT+SAPBR=0,1<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+Ard>AT+CGATT=0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>FONA> <$0D><$0A>RING
+<$0D><$0A>
+FONA><$0D><$0A>RING
+<$0D><$0A>
+ToTerm><$0D><$0A>R
+FONA><$0D><$0A>RING
+<$0D><$0A>
+ToTerm>ING<$0D><$0A>
+FromTerm>p<$0D><$0A>
+ToTerm>p<$0D><$0A>
+Ard>ATA<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+FromTerm>h<$0D><$0A>
+ToTerm>h<$0D><$0A>
+Ard>ATH0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+FromTerm>c<$0D><$0A>
+ToTerm>c<$0D><$0A>Call #<$0D><$0A>Calling 6370000
+<$0D><$0A>
+FromTerm>6370000<$0D><$0A>
+Ard>ATD6370000;<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>Sent!<$0D><$0A>FONA> h<$0D><$0A>
+FromTerm>h<$0D><$0A>
+Ard>ATH0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+FromTerm>c<$0D><$0A>
+ToTerm>c<$0D><$0A>Call #
+FromTerm>6370000<$0D><$0A>
+ToTerm><$0D><$0A>Calling 6370000
+<$0D><$0A>
+Ard>ATD6370000;<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>Sent!<$0D><$0A>FONA>
+FONA><$0D><$0A>NO CARRIER
+<$0D><$0A>
+ToTerm><$0D><$0A>NO CARRIER
+<$0D><$0A>
+FromTerm>h<$0D><$0A>
+ToTerm>h<$0D><$0A>
+Ard>ATH0<$0D><$0A>
+FONA><$0D><$0A>OK
+<$0D><$0A>
+ToTerm>OK!<$0D><$0A>FONA>
+*****************************************************
+<$0D><$0A>NO
+FONA><$0D><$0A>NORMAL POWER DOWN
+<$0D><$0A>
+ToTerm>RMAL POWER DOWN<$0D><$0A>
